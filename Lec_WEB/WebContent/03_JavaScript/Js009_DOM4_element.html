@@ -55,13 +55,24 @@ var element = document.getElementById("div1");
 // 단계별로 확인해보자
 
 // appendChild()
-// TODO
+para = document.createElement("p");  // <p> element node 생성
+node = document.createTextNode("appendChild()로 추가");  // #text 노드 생성
+para.appendChild(node);
+
+element.appendChild(para);
 
 // insertBefore()
-// TODO
+para = document.createElement("p");
+node = document.createTextNode("insertBefore()로 추가");
+para.appendChild(node);
+
+child = document.getElementById('p1');
+element.insertBefore(para, child);
 
 // removeChild()
-// TODO
+parent = document.getElementById('div1');
+child = document.getElementById('p2');
+parent.removeChild(child);
 
 </script>
 

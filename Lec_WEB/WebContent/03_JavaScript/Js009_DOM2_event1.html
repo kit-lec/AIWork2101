@@ -47,7 +47,47 @@ var demoBox = document.getElementById("demo");
 var addButton = document.getElementById("add_event"); 
 var removeButton = document.getElementById("remove_event");
 
-// TODO
+function clickHandler(event){
+	document.getElementById('event').innerHTML = event.type + " " + event.target;
+
+	var bgcolor = demoBox.style.background;
+
+	if(bgcolor != "greenyellow")
+		demoBox.style.background = "greenyellow";
+	else
+		demoBox.style.background = "yellow";
+}
+
+function mouseOverHandler(event){
+	document.getElementById('event').innerHTML =
+		event.type + " " + event.target;
+
+	demoBox.style.outline = "3px solid red";
+}
+
+addButton.addEventListener("click", function(){
+	// addEventListener() 사용
+	demoBox.addEventListener("click", clickHandler);
+	demoBox.innerHTML = "클릭해보세요";
+
+	// onXXXX attribute()  사용
+	demoBox.onmouseover = mouseOverHandler;
+	demoBox.onmouseout = function(event){
+		document.getElementById('event').innerHTML =
+			event.type + " " + event.target;
+		demoBox.style.outline = "";  // 스타일 속성 삭제
+	};
+
+
+});
+
+removeButton.addEventListener("click", function(){
+	demoBox.removeEventListener("click", clickHandler);
+	demoBox.innerHTML = "이벤트 없어요";
+
+	demoBox.onmouseover = undefined;  // 이벤트 리스너 삭제
+	demoBox.onmouseout = undefined;
+});
 
 </script>
 
@@ -56,9 +96,29 @@ var removeButton = document.getElementById("remove_event");
 
 <script>
 
-// TODO
+var showSize = function(event){
+	document.getElementById('event').innerHTML = event.type + " " + event.target;
+	document.getElementById("windowSize").innerHTML = 
+		window.innerWidth + " x " + window.innerHeight;
+};
+
+window.addEventListener("resize", showSize);
+// 이렇게도 가능
+// window.onresize = showSize;
+
+// 문서 로딩 완료 후에 JS 코드 동작시키기
+// window 의 onload 나 document 의 onload , body 의 onload 에 작성
+
+window.onload = function(event){
+
+	document.getElementById('demo5').innerHTML = "안녕하세요";
+}
+
 
 </script>
+
+
+<div id="demo5">demo5</div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>

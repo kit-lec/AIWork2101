@@ -76,9 +76,25 @@
 var info = document.getElementById('info');
 var infoTxt = "https://www.w3schools.com/js/ajax_info.txt";
 function loadDoc() {
+	info.innerHTML = "";
+	
+	var xhttp = new XMLHttpRequest();
 
-	// TODO
+	xhttp.onreadystatechange = function(){
+		// readystate 변경 상태 확인
 
+		info.innerHTML = "readyState 변경->" + this.readyState + "<br>" + info.innerHTML;
+
+		if(this.readyState == 4 && this.status == 200){
+			document.getElementById('demo').innerHTML = 
+					this.responseText;
+			
+		}
+
+	}
+
+	xhttp.open("GET", infoTxt, true);
+	xhttp.send();  // request 발생
 }
 </script>
 <!-- 
@@ -112,7 +128,7 @@ XMLHttpRequest object 의 property 들.
 		
 3. responseText : response 데이터를 문자열로.
 3. responseXML : response 데이터를 XML로.
-4. status : request 상태값
+4. status : response 상태값
 		[값] : [의미]
 		200 : OK
 		403 : Forbidden
