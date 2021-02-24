@@ -1,4 +1,4 @@
-
+SELECT * FROM T_DEPARTMENT; 
 -- FROM 절의 테이블에도 별칭(alias)를 줄수 있다.
 -- 학생 20명
 SELECT s.studno, s.name, s.deptno1
