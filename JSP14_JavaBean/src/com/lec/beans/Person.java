@@ -11,6 +11,8 @@ public class Person {
 		System.out.println("Person() 생성");
 	}
 	
+//	public Person(int n) {}
+	
 	// getter, setter
 	public String getName() {
 		return name;
