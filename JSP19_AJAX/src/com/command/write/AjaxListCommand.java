@@ -75,11 +75,11 @@ public class AjaxListCommand implements Command {
 		AjaxWriteListXML list = new AjaxWriteListXML(); // response 할 Java객체
 
 		if (dtoArr == null) {
-			//list.setStatus("FAIL");
+			list.setStatus("FAIL");
 		} else {
-//			list.setStatus("OK");
-//			list.setCount(dtoArr.size());
-//			list.setList(dtoArr);
+			list.setStatus("OK");
+			list.setCount(dtoArr.size());
+			list.setList(dtoArr);
 		}
 
 		XmlMapper mapper = new XmlMapper(); // Java - XML 매핑할 Mapper 객체

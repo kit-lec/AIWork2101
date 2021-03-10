@@ -3,6 +3,8 @@ package com.lec.beans;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -22,6 +24,8 @@ public class WriteDTO {
 	// java.time.*  객체 변환을 위한 annotation
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonProperty("regdate")
 	private LocalDateTime regDate; // wr_regdate
 
 	// 웹개발시...
@@ -107,11 +111,16 @@ public class WriteDTO {
 
 	
 	//  regDate 를 String 으로 리턴하는 getter
-	@JsonProperty("regdate")
+	//@JsonProperty("regdate")   // 임의의 getter에 붙일수도 있다.
+	@JsonIgnore
 	public String getRegDateTime() {
 		if(this.regDate == null) return "";
 		return this.regDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 	}
+	
+//	public int getAge() {
+//		return 120;
+//	}
 	
 	@Override
 	public String toString() {
