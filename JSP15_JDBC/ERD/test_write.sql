@@ -44,7 +44,7 @@ SELECT
 	wr_name name, wr_viewcnt viewcnt, wr_regdate regdate
 FROM test_write ORDER BY wr_uid DESC;
 
--- 기본의 테이블 x2 배 늘리기
+-- 기존의 테이블 x2 배 늘리기
 INSERT INTO test_write(wr_uid, wr_subject, wr_content, wr_name, wr_viewcnt)
 SELECT test_write_seq.nextval, wr_subject, wr_content, wr_name, WR_VIEWCNT
 FROM test_write;

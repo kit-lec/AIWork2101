@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.spring.test.domain.WriteDAO">
+	<!-- id=메소드 이름. WriteDAO의 메소드 이름.-->
+	
+	<select id="select" resultType="com.spring.test.domain.WriteDTO">
+		SELECT
+			ex_uid "uid", 
+			ex_name name,
+			ex_con con, 
+			ex_price price
+		FROM 
+			exam_menu
+		ORDER BY 
+			ex_uid DESC
+	</select>
+
+
+	<insert id="insert" flushCache="true" 
+		parameterType = "com.spring.test.domain.WriteDTO"
+		keyProperty="uid" useGeneratedKeys="true" keyColumn="ex_uid"> 
+
+		INSERT INTO 
+			exam_menu 
+			(ex_uid, ex_name, ex_con, ex_price)
+		VALUES
+			(exam_menu_seq.nextval, #{name}, #{con}, #{price})			
+	</insert>
+
+			
+	<select id="selectByUid" resultType="com.spring.test.domain.WriteDTO">
+		SELECT
+			ex_uid "uid", 
+			ex_name name,
+			ex_con con, 
+			ex_price price
+		FROM 
+			exam_menu 
+		WHERE 
+			ex_uid = #{uid}	
+	</select>
+
+
+	<update id="update" flushCache="true"
+		parameterType = "com.spring.test.domain.WriteDTO">
+		UPDATE 
+			exam_menu
+		SET 
+			ex_name = #{name}, 
+			ex_con = #{con}, 
+			ex_price = #{price} 
+		WHERE 
+			ex_uid = #{uid}		
+	</update>
+
+	
+	<delete id="deleteByUid" flushCache="true">
+		DELETE 
+		FROM 
+			exam_menu 
+		WHERE 
+			ex_uid = #{uid}	
+	</delete>
+	
+	
+	<select id="searchBySubject"
+		resultType="com.spring.test.domain.WriteDTO">
+	</select>
+	
+		
+</mapper>
+
+
+
+
+
